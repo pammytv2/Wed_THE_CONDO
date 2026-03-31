@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE CONDO RESIDENCE — Luxury Living in Bangkok</title>
+  <meta name="description" content="THE CONDO RESIDENCE — โครงการคอนโดหรูพรีเมียม ทำเลทอง ใจกลางเมือง วิวสวยงาม สิ่งอำนวยความสะดวกครบครัน">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       RESET & BASE STYLES
+       ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary:       #1a2744;
+      --primary-light: #243560;
+      --gold:          #c9a84c;
+      --gold-light:    #e8c97a;
+      --white:         #ffffff;
+      --off-white:     #f8f6f1;
+      --light-gray:    #f1eeea;
+      --gray:          #888888;
+      --dark-gray:     #444444;
+      --text:          #2c2c2c;
+      --shadow-sm:     0 2px 12px rgba(0,0,0,0.08);
+      --shadow-md:     0 8px 32px rgba(0,0,0,0.12);
+      --shadow-lg:     0 20px 60px rgba(0,0,0,0.18);
+      --radius-sm:     6px;
+      --radius-md:     14px;
+      --radius-lg:     24px;
+      --transition:    0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a   { text-decoration: none; color: inherit; }
+    ul  { list-style: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', 'Sarabun', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-top: 12px;
+      max-width: 560px;
+    }
+
+    .gold-line {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 3px;
+      margin: 18px 0 24px;
+    }
+    .gold-line.center { margin-left: auto; margin-right: auto; }
+
+    /* ============================================
+       PRELOADER
+       ============================================ */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--primary);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .preloader-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--gold);
+      letter-spacing: 4px;
+    }
+    .preloader-bar {
+      width: 200px; height: 2px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px; overflow: hidden;
+    }
+    .preloader-bar::after {
+      content: ''; display: block; height: 100%; width: 0;
+      background: var(--gold);
+      animation: loadBar 1.4s ease forwards;
+    }
+    @keyframes loadBar { to { width: 100%; } }
+
+    /* ============================================
+       NAVBAR
+       ============================================ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000; padding: 20px 0;
+      transition: var(--transition);
+    }
+    .navbar.scrolled {
+      background: rgba(26,39,68,0.96);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      box-shadow: var(--shadow-md);
+    }
+    .navbar .container {
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .logo-mark {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 900;
+      color: var(--primary); font-family: 'Playfair Display', serif;
+    }
+    .nav-logo .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--white); letter-spacing: 2px;
+    }
+    .nav-logo .logo-text span { color: var(--gold); }
+
+    .nav-menu {
+      display: flex; align-items: center; gap: 36px;
+    }
+    .nav-menu a {
+      color: rgba(255,255,255,0.85); font-size: 0.9rem;
+      font-weight: 500; letter-spacing: 1px;
+      transition: var(--transition); position: relative;
+    }
+    .nav-menu a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px; background: var(--gold);
+      transition: var(--transition);
+    }
+    .nav-menu a:hover { color: var(--gold); }
+    .nav-menu a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
+      color: var(--primary) !important;
+      padding: 10px 24px !important;
+      border-radius: 50px !important;
+      font-weight: 700 !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.4) !important; }
+
+    .hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=80');
+      background-size: cover; background-position: center;
+      transform: scale(1.08);
+      animation: heroZoom 8s ease forwards;
+    }
+    @keyframes heroZoom { to { transform: scale(1); } }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg,
+        rgba(26,39,68,0.88) 0%,
+        rgba(26,39,68,0.55) 50%,
+        rgba(26,39,68,0.3) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 680px;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      padding: 8px 20px; border-radius: 50px;
+      font-size: 0.8rem; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.5); }
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.1; margin-bottom: 24px;
+    }
+    .hero-title .gold-text { color: var(--gold); display: block; }
+    .hero-desc {
+      font-size: 1.1rem; color: rgba(255,255,255,0.8);
+      max-width: 520px; margin-bottom: 40px; line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--primary); padding: 16px 36px;
+      border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+      transition: var(--transition);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(201,168,76,0.5); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--white);
+      padding: 15px 36px; border-radius: 50px; font-weight: 600;
+      font-size: 0.95rem; border: 1.5px solid rgba(255,255,255,0.5);
+      transition: var(--transition);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--white); transform: translateY(-3px); }
+
+    .hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      background: rgba(255,255,255,0.06); backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stats .container {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 28px 24px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.65); margin-top: 6px; letter-spacing: 1px; }
+
+    .scroll-indicator {
+      position: absolute; right: 48px; bottom: 120px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px; color: rgba(255,255,255,0.5);
+      font-size: 0.7rem; letter-spacing: 3px;
+      text-transform: uppercase; writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollLine 2s ease infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ============================================
+       OVERVIEW
+       ============================================ */
+    .section-overview { padding: 120px 0; background: var(--white); }
+    .overview-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .overview-visual { position: relative; }
+    .overview-img-main {
+      width: 100%; height: 520px; object-fit: cover;
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+    }
+    .overview-img-float {
+      position: absolute; bottom: -30px; right: -30px;
+      width: 200px; height: 200px; object-fit: cover;
+      border-radius: var(--radius-md);
+      border: 5px solid var(--white); box-shadow: var(--shadow-lg);
+    }
+    .overview-badge {
+      position: absolute; top: 30px; left: -20px;
+      background: var(--primary); color: var(--white);
+      padding: 18px 24px; border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md); text-align: center;
+    }
+    .overview-badge .badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1;
+    }
+    .overview-badge .badge-text { font-size: 0.75rem; margin-top: 4px; opacity: 0.8; }
+
+    .overview-text .tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      padding: 6px 16px; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .overview-text p { color: var(--dark-gray); font-size: 1.05rem; line-height: 1.9; margin-bottom: 16px; }
+    .overview-highlights {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 32px;
+    }
+    .highlight-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px; background: var(--off-white);
+      border-radius: var(--radius-md); transition: var(--transition);
+      cursor: default;
+    }
+    .highlight-item:hover {
+      background: var(--primary); color: var(--white);
+      transform: translateY(-3px); box-shadow: var(--shadow-sm);
+    }
+    .highlight-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .highlight-label { font-size: 0.9rem; font-weight: 600; }
+
+    /* ============================================
+       FEATURES
+       ============================================ */
+    .section-features {
+      padding: 120px 0; background: var(--primary);
+      position: relative; overflow: hidden;
+    }
+    .section-features::before {
+      content: ''; position: absolute;
+      top: -50%; right: -10%; width: 600px; height: 600px;
+      border-radius: 50%; background: rgba(201,168,76,0.04);
+      pointer-events: none;
+    }
+    .features-header { text-align: center; margin-bottom: 70px; }
+    .features-header .section-title { color: var(--white); }
+    .features-header .section-subtitle { color: rgba(255,255,255,0.6); margin: 12px auto 0; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg); padding: 40px 32px;
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), transparent);
+      opacity: 0; transition: var(--transition);
+    }
+    .feature-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon-wrap {
+      width: 68px; height: 68px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05));
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin-bottom: 24px; transition: var(--transition);
+    }
+    .feature-card:hover .feature-icon-wrap {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-color: transparent;
+    }
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 12px;
+    }
+    .feature-desc { font-size: 0.92rem; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+    /* ============================================
+       GALLERY
+       ============================================ */
+    .section-gallery { padding: 120px 0; background: var(--off-white); }
+    .gallery-header { text-align: center; margin-bottom: 60px; }
+
+    .gallery-tabs {
+      display: flex; justify-content: center; gap: 12px;
+      margin-bottom: 40px; flex-wrap: wrap;
+    }
+    .gallery-tab {
+      padding: 10px 24px; border-radius: 50px;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      border: 1.5px solid transparent; transition: var(--transition);
+      background: var(--white); color: var(--gray);
+      font-family: inherit;
+    }
+    .gallery-tab.active,
+    .gallery-tab:hover { background: var(--primary); color: var(--gold); border-color: var(--primary); }
+
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(2, 280px); gap: 16px;
+    }
+    .gallery-item { overflow: hidden; border-radius: var(--radius-md); position: relative; cursor: pointer; }
+    .gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
+    .gallery-item:nth-child(2) { grid-column: span 4; }
+    .gallery-item:nth-child(3) { grid-column: span 3; }
+    .gallery-item:nth-child(4) { grid-column: span 3; }
+    .gallery-item:nth-child(5) { grid-column: span 4; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,39,68,0.7), transparent);
+      opacity: 0; transition: var(--transition);
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-label { color: var(--white); font-weight: 600; font-size: 0.95rem; }
+
+    /* ============================================
+       UNITS
+       ============================================ */
+    .section-units { padding: 120px 0; background: var(--white); }
+    .units-header { text-align: center; margin-bottom: 60px; }
+
+    .units-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+    .unit-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      border: 1px solid var(--light-gray); transition: var(--transition);
+    }
+    .unit-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: rgba(201,168,76,0.3); }
+    .unit-img { height: 230px; overflow: hidden; position: relative; }
+    .unit-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .unit-card:hover .unit-img img { transform: scale(1.08); }
+    .unit-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--primary); color: var(--gold);
+      padding: 6px 14px; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+    }
+    .unit-body { padding: 28px; }
+    .unit-type {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      font-weight: 700; color: var(--primary); margin-bottom: 8px;
+    }
+    .unit-size { display: flex; align-items: center; gap: 8px; color: var(--gray); font-size: 0.9rem; margin-bottom: 20px; }
+    .unit-features { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .unit-feature { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--dark-gray); }
+    .unit-price-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 20px; border-top: 1px solid var(--light-gray);
+    }
+    .unit-price { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+    .unit-price-sub { font-size: 0.78rem; color: var(--gray); margin-top: 2px; }
+    .btn-unit {
+      padding: 10px 20px; border-radius: 50px;
+      border: 1.5px solid var(--primary); color: var(--primary);
+      font-size: 0.85rem; font-weight: 600; transition: var(--transition);
+      cursor: pointer; background: transparent; font-family: inherit;
+    }
+    .btn-unit:hover { background: var(--primary); color: var(--gold); }
+
+    /* ============================================
+       LOCATION
+       ============================================ */
+    .section-location { padding: 120px 0; background: var(--off-white); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .location-map {
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-lg); height: 460px; position: relative;
+    }
+    .map-placeholder { width: 100%; height: 100%; object-fit: cover; }
+
+    .location-info .tag {
+      display: inline-block; background: rgba(201,168,76,0.1); color: var(--gold);
+      padding: 6px 16px; border-radius: 50px; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .location-info p { color: var(--dark-gray); font-size: 1rem; line-height: 1.9; margin-bottom: 32px; }
+    .nearby-list { display: flex; flex-direction: column; gap: 12px; }
+    .nearby-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px; background: var(--white);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .nearby-item:hover { transform: translateX(6px); box-shadow: var(--shadow-md); }
+    .nearby-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .nearby-text .name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+    .nearby-text .distance { font-size: 0.82rem; color: var(--gray); margin-top: 2px; }
+    .distance-badge {
+      margin-left: auto; padding: 4px 12px;
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      border-radius: 50px; font-size: 0.78rem; font-weight: 700; flex-shrink: 0;
+    }
+
+    /* ============================================
+       TESTIMONIALS
+       ============================================ */
+    .section-testimonials {
+      padding: 120px 0; background: var(--primary);
+      position: relative; overflow: hidden;
+    }
+    .testimonials-header { text-align: center; margin-bottom: 60px; }
+    .testimonials-header .section-title { color: var(--white); }
+    .testimonials-header .section-subtitle { color: rgba(255,255,255,0.6); margin: 12px auto 0; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testimonial-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg); padding: 36px; transition: var(--transition);
+    }
+    .testimonial-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.3); transform: translateY(-6px); }
+    .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 20px; }
+    .testimonial-text { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.9; font-style: italic; margin-bottom: 24px; }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(201,168,76,0.4); }
+    .author-name { font-weight: 700; color: var(--white); font-size: 0.95rem; }
+    .author-unit { font-size: 0.8rem; color: var(--gold); margin-top: 2px; }
+
+    /* ============================================
+       CONTACT
+       ============================================ */
+    .section-contact { padding: 120px 0; background: var(--off-white); }
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+    .contact-info .tag {
+      display: inline-block; background: rgba(201,168,76,0.1); color: var(--gold);
+      padding: 6px 16px; border-radius: 50px; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .contact-info p { color: var(--dark-gray); font-size: 1rem; line-height: 1.9; margin-bottom: 36px; }
+    .contact-details { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 16px; }
+    .contact-icon {
+      width: 44px; height: 44px; background: var(--primary);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-text .label { font-size: 0.78rem; color: var(--gray); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 1px; }
+    .contact-text .value { font-weight: 600; color: var(--text); font-size: 0.95rem; }
+
+    .contact-form {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 48px; box-shadow: var(--shadow-md);
+    }
+    .form-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .form-subtitle { color: var(--gray); font-size: 0.9rem; margin-bottom: 32px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--dark-gray); margin-bottom: 8px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 14px 18px;
+      border: 1.5px solid var(--light-gray); border-radius: var(--radius-sm);
+      font-size: 0.95rem; font-family: inherit; color: var(--text);
+      background: var(--off-white); transition: var(--transition); outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold); background: var(--white);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select {
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 18px center;
+    }
+    .btn-submit {
+      width: 100%; padding: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white); border: none; border-radius: var(--radius-md);
+      font-size: 1rem; font-weight: 700; font-family: inherit;
+      cursor: pointer; transition: var(--transition); letter-spacing: 0.5px;
+      position: relative; overflow: hidden;
+    }
+    .btn-submit::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      transition: left 0.4s ease;
+    }
+    .btn-submit:hover::before { left: 0; }
+    .btn-submit span { position: relative; z-index: 1; }
+    .btn-submit:hover span { color: var(--primary); }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer { background: #0f1829; color: var(--white); padding: 80px 0 0; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand .brand-desc {
+      color: rgba(255,255,255,0.55); font-size: 0.92rem; line-height: 1.8;
+      margin: 16px 0 24px; max-width: 280px;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .social-btn {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; transition: var(--transition); cursor: pointer;
+    }
+    .social-btn:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-3px); }
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif; font-size: 1rem;
+      font-weight: 700; color: var(--gold); letter-spacing: 1px; margin-bottom: 20px;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.55); font-size: 0.9rem; transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); padding-left: 6px; }
+
+    .footer-bottom {
+      padding: 24px 0; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.35); font-size: 0.85rem; transition: var(--transition); }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ============================================
+       BACK TO TOP
+       ============================================ */
+    .back-to-top {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--primary); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(201,168,76,0.4);
+      transition: var(--transition); opacity: 0; visibility: hidden;
+      z-index: 500; border: none;
+    }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(201,168,76,0.5); }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1024px) {
+      .overview-grid, .location-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 48px; }
+      .overview-img-main { height: 400px; }
+      .overview-img-float { display: none; }
+      .overview-badge { left: 16px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .units-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(2),
+      .gallery-item:nth-child(3),
+      .gallery-item:nth-child(4),
+      .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 1; height: 220px; }
+    }
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .hamburger { display: flex; }
+      .nav-menu.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(26,39,68,0.97); padding: 24px; gap: 20px;
+        backdrop-filter: blur(16px);
+      }
+      .hero-stats .container { grid-template-columns: repeat(2, 1fr); }
+      .scroll-indicator { display: none; }
+      .features-grid, .units-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 28px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+      .overview-highlights { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     PRELOADER
+     ============================================================ -->
+<div id="preloader">
+  <div class="preloader-logo">CONDO</div>
+  <div class="preloader-bar"></div>
+</div>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#hero" class="nav-logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">THE <span>CONDO</span></div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="#overview">โครงการ</a></li>
+      <li><a href="#features">สิ่งอำนวยความสะดวก</a></li>
+      <li><a href="#gallery">แกลเลอรี</a></li>
+      <li><a href="#units">ห้องชุด</a></li>
+      <li><a href="#location">ทำเล</a></li>
+      <li><a href="#contact" class="nav-cta">นัดชมโครงการ</a></li>
+    </ul>
+    <div class="hamburger" onclick="document.querySelector('.nav-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">✦ New Launch 2026 · Pre-Sale Now Open</div>
+      <h1 class="hero-title">
+        ชีวิตหรูหรา
+        <span class="gold-text">ระดับพรีเมียม</span>
+      </h1>
+      <p class="hero-desc">
+        THE CONDO RESIDENCE — โครงการคอนโดหรูใจกลางเมือง ดีไซน์ร่วมสมัยบนทำเลทองที่ดีที่สุด
+        พร้อมสิ่งอำนวยความสะดวกระดับ 5 ดาว และวิวสวยงามที่ไม่เหมือนใคร
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">🏠 นัดชมโครงการฟรี</a>
+        <a href="#gallery" class="btn-secondary">🖼️ ชมตัวอย่าง</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="container">
+      <div class="stat-item">
+        <div class="stat-number" data-target="320" data-suffix="">0</div>
+        <div class="stat-label">ยูนิต</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="45" data-suffix="">0</div>
+        <div class="stat-label">ชั้น</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="28" data-suffix="+">0</div>
+        <div class="stat-label">สิ่งอำนวยความสะดวก</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="5" data-suffix="★">0</div>
+        <div class="stat-label">ระดับ Premium</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section-overview" id="overview">
+  <div class="container">
+    <div class="overview-grid">
+      <div class="overview-visual reveal-left">
+        <img class="overview-img-main"
+          src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80"
+          alt="Interior — The Condo Residence" loading="lazy">
+        <div class="overview-badge">
+          <div class="badge-num">2026</div>
+          <div class="badge-text">พร้อมเข้าอยู่</div>
+        </div>
+        <img class="overview-img-float"
+          src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80"
+          alt="Living Room Detail" loading="lazy">
+      </div>
+      <div class="overview-text reveal-right">
+        <span class="tag">✦ ABOUT PROJECT</span>
+        <h2 class="section-title">พื้นที่แห่งความสุข<br>ที่ออกแบบเพื่อคุณ</h2>
+        <div class="gold-line"></div>
+        <p>THE CONDO RESIDENCE คือโครงการที่พักอาศัยระดับ Luxury ใจกลางเมือง ออกแบบโดยทีมสถาปนิกชั้นนำ ผสมผสานความสวยงามของงานดีไซน์ร่วมสมัยเข้ากับฟังก์ชันการใช้งานที่ครบครัน เพื่อตอบสนองทุกไลฟ์สไตล์</p>
+        <p>ทุกห้องชุดถูกออกแบบอย่างพิถีพิถัน ด้วยวัสดุคุณภาพพรีเมียม และวิวเมืองที่สวยงาม ทำให้ทุกเช้าที่คุณตื่นขึ้นมาเป็นประสบการณ์ที่พิเศษ</p>
+        <div class="overview-highlights">
+          <div class="highlight-item"><span class="highlight-icon">🏙️</span><span class="highlight-label">วิวเมืองพาโนรามา</span></div>
+          <div class="highlight-item"><span class="highlight-icon">🔐</span><span class="highlight-label">ระบบรักษาความปลอดภัย 24 ชม.</span></div>
+          <div class="highlight-item"><span class="highlight-icon">🚇</span><span class="highlight-label">ใกล้รถไฟฟ้า BTS/MRT</span></div>
+          <div class="highlight-item"><span class="highlight-icon">🌿</span><span class="highlight-label">พื้นที่สีเขียวและสวน</span></div>
+          <div class="highlight-item"><span class="highlight-icon">🚗</span><span class="highlight-label">ที่จอดรถอัตโนมัติ</span></div>
+          <div class="highlight-item"><span class="highlight-icon">♿</span><span class="highlight-label">Universal Design</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURES
+     ============================================================ -->
+<section class="section-features" id="features">
+  <div class="container">
+    <div class="features-header reveal">
+      <span style="display:inline-block;background:rgba(201,168,76,0.15);color:var(--gold);padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">✦ AMENITIES</span>
+      <h2 class="section-title">สิ่งอำนวยความสะดวก<br>ระดับ World Class</h2>
+      <div class="gold-line center"></div>
+      <p class="section-subtitle">สิ่งอำนวยความสะดวกกว่า 28 รายการ ออกแบบเพื่อทุกไลฟ์สไตล์ของคุณ</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal" style="transition-delay:.05s">
+        <div class="feature-icon-wrap">🏊</div>
+        <h3 class="feature-title">สระว่ายน้ำ Infinity Pool</h3>
+        <p class="feature-desc">สระว่ายน้ำขนาดใหญ่แบบ Infinity บนชั้น 40 พร้อมวิวเมืองแบบพาโนรามา 360 องศา เปิดบริการทุกวัน</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.1s">
+        <div class="feature-icon-wrap">💪</div>
+        <h3 class="feature-title">ฟิตเนส & Wellness Center</h3>
+        <p class="feature-desc">ห้องออกกำลังกายครบวงจร พร้อมอุปกรณ์ทันสมัย สตูดิโอ Yoga และ Spa บริการระดับ 5 ดาว</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.15s">
+        <div class="feature-icon-wrap">🍽️</div>
+        <h3 class="feature-title">ห้องอาหารและ Lounge</h3>
+        <p class="feature-desc">ร้านอาหาร Sky Restaurant บนชั้น 45 และ Lobby Lounge บรรยากาศหรูหราสำหรับผู้อยู่อาศัย</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.2s">
+        <div class="feature-icon-wrap">🌿</div>
+        <h3 class="feature-title">สวนลอยฟ้า Sky Garden</h3>
+        <p class="feature-desc">พื้นที่สีเขียวส่วนตัว สวนพักผ่อนลอยฟ้า พร้อมพื้นที่ BBQ และ Garden Terrace ส่วนตัว</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.25s">
+        <div class="feature-icon-wrap">🎮</div>
+        <h3 class="feature-title">Co-Working & Game Room</h3>
+        <p class="feature-desc">ห้องทำงานส่วนกลางพร้อม High-speed Wi-Fi และห้องเกมส์บันเทิงสำหรับทุกวัย</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.3s">
+        <div class="feature-icon-wrap">🛡️</div>
+        <h3 class="feature-title">ระบบ Smart Security</h3>
+        <p class="feature-desc">ระบบ AI Security กล้อง CCTV ครบทุกมุม Key Card Access และทีม รปภ. 24 ชั่วโมง</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY
+     ============================================================ -->
+<section class="section-gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <span style="display:inline-block;background:rgba(201,168,76,0.1);color:var(--gold);padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">✦ GALLERY</span>
+      <h2 class="section-title">ชมบรรยากาศจริง</h2>
+      <div class="gold-line center"></div>
+      <p class="section-subtitle" style="margin:0 auto;">ภาพถ่ายจากโครงการจริง ห้องตัวอย่างและสิ่งอำนวยความสะดวก</p>
+    </div>
+    <div class="gallery-tabs">
+      <button class="gallery-tab active" data-filter="all">ทั้งหมด</button>
+      <button class="gallery-tab" data-filter="interior">ห้องภายใน</button>
+      <button class="gallery-tab" data-filter="amenity">สิ่งอำนวยความสะดวก</button>
+      <button class="gallery-tab" data-filter="exterior">ภายนอก</button>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item" data-cat="exterior">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80" alt="Building Exterior" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-label">🏙️ อาคารหลัก</span></div>
+      </div>
+      <div class="gallery-item" data-cat="interior">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=80" alt="Living Room" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-label">🛋️ ห้องนั่งเล่น</span></div>
+      </div>
+      <div class="gallery-item" data-cat="interior">
+        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=80" alt="Master Bedroom" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-label">🛏️ ห้องนอน Master</span></div>
+      </div>
+      <div class="gallery-item" data-cat="interior">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Modern Kitchen" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-label">🍳 ห้องครัว Modern</span></div>
+      </div>
+      <div class="gallery-item" data-cat="amenity">
+        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=700&q=80" alt="Infinity Pool" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-label">🏊 Infinity Pool</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT TYPES
+     ============================================================ -->
+<section class="section-units" id="units">
+  <div class="container">
+    <div class="units-header reveal">
+      <span style="display:inline-block;background:rgba(201,168,76,0.1);color:var(--gold);padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">✦ UNIT TYPES</span>
+      <h2 class="section-title">เลือกห้องที่ใช่สำหรับคุณ</h2>
+      <div class="gold-line center"></div>
+      <p class="section-subtitle" style="margin:0 auto;">ห้องชุดหลากหลายขนาด ตอบสนองทุกความต้องการ</p>
+    </div>
+    <div class="units-grid">
+      <div class="unit-card reveal" style="transition-delay:.05s">
+        <div class="unit-img">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80" alt="Studio Unit" loading="lazy">
+          <span class="unit-badge">STUDIO</span>
+        </div>
+        <div class="unit-body">
+          <h3 class="unit-type">Studio Suite</h3>
+          <div class="unit-size"><span>📐</span><span>28 – 35 ตร.ม.</span></div>
+          <div class="unit-features">
+            <span class="unit-feature">🛏️ 1 นอน</span>
+            <span class="unit-feature">🚿 1 น้ำ</span>
+            <span class="unit-feature">🏙️ City View</span>
+          </div>
+          <div class="unit-price-row">
+            <div>
+              <div class="unit-price">3.2 ล้าน+</div>
+              <div class="unit-price-sub">เริ่มต้น (ราคาก่อน VAT)</div>
+            </div>
+            <button class="btn-unit" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">สนใจ</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Card -->
+      <div class="unit-card reveal" style="transition-delay:.1s; border:2px solid rgba(201,168,76,0.35); position:relative; margin-top: 14px;">
+        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--primary);padding:5px 20px;border-radius:50px;font-size:.75rem;font-weight:800;letter-spacing:1.5px;white-space:nowrap;z-index:10;">⭐ MOST POPULAR</div>
+        <div class="unit-img">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" alt="1 Bedroom" loading="lazy">
+          <span class="unit-badge">1 BED</span>
+        </div>
+        <div class="unit-body">
+          <h3 class="unit-type">One Bedroom</h3>
+          <div class="unit-size"><span>📐</span><span>45 – 58 ตร.ม.</span></div>
+          <div class="unit-features">
+            <span class="unit-feature">🛏️ 1 นอน</span>
+            <span class="unit-feature">🚿 1 น้ำ</span>
+            <span class="unit-feature">🌃 Panorama View</span>
+          </div>
+          <div class="unit-price-row">
+            <div>
+              <div class="unit-price">5.8 ล้าน+</div>
+              <div class="unit-price-sub">เริ่มต้น (ราคาก่อน VAT)</div>
+            </div>
+            <button class="btn-unit" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">สนใจ</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="unit-card reveal" style="transition-delay:.15s">
+        <div class="unit-img">
+          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80" alt="2 Bedroom" loading="lazy">
+          <span class="unit-badge">2 BED</span>
+        </div>
+        <div class="unit-body">
+          <h3 class="unit-type">Two Bedroom</h3>
+          <div class="unit-size"><span>📐</span><span>75 – 95 ตร.ม.</span></div>
+          <div class="unit-features">
+            <span class="unit-feature">🛏️ 2 นอน</span>
+            <span class="unit-feature">🚿 2 น้ำ</span>
+            <span class="unit-feature">🌇 Duplex View</span>
+          </div>
+          <div class="unit-price-row">
+            <div>
+              <div class="unit-price">9.5 ล้าน+</div>
+              <div class="unit-price-sub">เริ่มต้น (ราคาก่อน VAT)</div>
+            </div>
+            <button class="btn-unit" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">สนใจ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOCATION
+     ============================================================ -->
+<section class="section-location" id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div class="location-map reveal-left">
+        <img class="map-placeholder"
+          src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80"
+          alt="Bangkok City — Location" loading="lazy">
+      </div>
+      <div class="location-info reveal-right">
+        <span class="tag">📍 LOCATION</span>
+        <h2 class="section-title">ทำเลทอง<br>ใจกลางกรุงเทพฯ</h2>
+        <div class="gold-line"></div>
+        <p>ตั้งอยู่บนถนนสุขุมวิท แหล่งไลฟ์สไตล์ระดับ Premium ใกล้สถานี BTS เพียง 200 เมตร ห้อมล้อมด้วยสิ่งอำนวยความสะดวกครบครัน ทั้งห้างสรรพสินค้า โรงพยาบาล โรงเรียนนานาชาติ และสถานบันเทิง</p>
+        <div class="nearby-list">
+          <div class="nearby-item">
+            <span class="nearby-icon">🚇</span>
+            <div class="nearby-text">
+              <div class="name">BTS อโศก / MRT สุขุมวิท</div>
+              <div class="distance">สถานีรถไฟฟ้าใกล้ที่สุด</div>
+            </div>
+            <span class="distance-badge">200 ม.</span>
+          </div>
+          <div class="nearby-item">
+            <span class="nearby-icon">🏪</span>
+            <div class="nearby-text">
+              <div class="name">Terminal 21 & EmQuartier</div>
+              <div class="distance">ห้างสรรพสินค้าชั้นนำ</div>
+            </div>
+            <span class="distance-badge">300 ม.</span>
+          </div>
+          <div class="nearby-item">
+            <span class="nearby-icon">🏥</span>
+            <div class="nearby-text">
+              <div class="name">โรงพยาบาล Bumrungrad</div>
+              <div class="distance">โรงพยาบาลระดับ World Class</div>
+            </div>
+            <span class="distance-badge">1.2 กม.</span>
+          </div>
+          <div class="nearby-item">
+            <span class="nearby-icon">🏫</span>
+            <div class="nearby-text">
+              <div class="name">NIST International School</div>
+              <div class="distance">โรงเรียนนานาชาติชั้นนำ</div>
+            </div>
+            <span class="distance-badge">800 ม.</span>
+          </div>
+          <div class="nearby-item">
+            <span class="nearby-icon">✈️</span>
+            <div class="nearby-text">
+              <div class="name">สนามบินสุวรรณภูมิ</div>
+              <div class="distance">Airport Rail Link</div>
+            </div>
+            <span class="distance-badge">30 นาที</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section class="section-testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span style="display:inline-block;background:rgba(201,168,76,0.15);color:var(--gold);padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">✦ TESTIMONIALS</span>
+      <h2 class="section-title">เสียงจากผู้อยู่อาศัย</h2>
+      <div class="gold-line center"></div>
+      <p class="section-subtitle">ความประทับใจจากผู้ที่เลือกใช้ชีวิตกับเรา</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal" style="transition-delay:.05s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"โครงการนี้ทำให้ชีวิตผมเปลี่ยนไปอย่างสิ้นเชิง วิวสวยงามมาก ทีมงานดูแลดีเยี่ยม สิ่งอำนวยความสะดวกครบครันจริงๆ ประทับใจมากตั้งแต่วันแรกที่ย้ายเข้ามา"</p>
+        <div class="testimonial-author">
+          <img class="author-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Prasong" loading="lazy">
+          <div>
+            <div class="author-name">คุณประสงค์ กิตติวัฒน์</div>
+            <div class="author-unit">ห้อง 2 Bedroom ชั้น 35</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:.1s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"ตัดสินใจซื้อตั้งแต่ Pre-Sale ไม่ผิดหวังเลยค่ะ วัสดุก่อสร้างคุณภาพสูงมาก Lobby สวยมากระดับโรงแรม 5 ดาว ใกล้ BTS สะดวกมากสำหรับชีวิตการทำงาน"</p>
+        <div class="testimonial-author">
+          <img class="author-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Natcha" loading="lazy">
+          <div>
+            <div class="author-name">คุณณัชชา สุวรรณศรี</div>
+            <div class="author-unit">ห้อง Studio ชั้น 28</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:.15s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"ซื้อเพื่อการลงทุนครับ ผลตอบแทนค่าเช่าดีมาก ผู้เช่าชอบมากเพราะทำเลดีและสิ่งอำนวยความสะดวกครบ แนะนำให้นักลงทุนพิจารณาโครงการนี้อย่างจริงจัง"</p>
+        <div class="testimonial-author">
+          <img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Wichai" loading="lazy">
+          <div>
+            <div class="author-name">คุณวิชัย พัฒนาพงศ์</div>
+            <div class="author-unit">นักลงทุน 2 ยูนิต</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="section-contact" id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-info reveal-left">
+        <span class="tag">📩 CONTACT US</span>
+        <h2 class="section-title">พร้อมให้คำปรึกษา<br>ทุกวัน</h2>
+        <div class="gold-line"></div>
+        <p>ทีมงานผู้เชี่ยวชาญของเราพร้อมให้คำปรึกษาและนำชมโครงการ ไม่มีค่าใช้จ่าย ลงทะเบียนวันนี้เพื่อรับสิทธิ์พิเศษและข้อเสนอ Pre-Sale ที่ดีที่สุด</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-text">
+              <div class="label">โทรศัพท์</div>
+              <div class="value">02-XXX-XXXX</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div class="contact-text">
+              <div class="label">LINE Official</div>
+              <div class="value">@thecondoresidence</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-text">
+              <div class="label">อีเมล</div>
+              <div class="value">info@thecondoresidence.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-text">
+              <div class="label">Sales Gallery</div>
+              <div class="value">ถนนสุขุมวิท กรุงเทพมหานคร</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div class="contact-text">
+              <div class="label">เวลาทำการ</div>
+              <div class="value">ทุกวัน 10:00 – 19:00 น.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal-right">
+        <h3 class="form-title">ลงทะเบียนรับข้อมูล</h3>
+        <p class="form-subtitle">กรอกข้อมูลเพื่อรับสิทธิพิเศษและนัดชมโครงการฟรี</p>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">ชื่อ *</label>
+              <input type="text" id="fname" placeholder="ชื่อของคุณ" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">นามสกุล *</label>
+              <input type="text" id="lname" placeholder="นามสกุลของคุณ" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">เบอร์โทรศัพท์ *</label>
+              <input type="tel" id="phone" placeholder="0XX-XXX-XXXX" required>
+            </div>
+            <div class="form-group">
+              <label for="email">อีเมล</label>
+              <input type="email" id="email" placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="unit-type">ประเภทห้องที่สนใจ *</label>
+            <select id="unit-type" required>
+              <option value="">-- เลือกประเภทห้อง --</option>
+              <option value="studio">Studio Suite (28-35 ตร.ม.)</option>
+              <option value="1bed">One Bedroom (45-58 ตร.ม.)</option>
+              <option value="2bed">Two Bedroom (75-95 ตร.ม.)</option>
+              <option value="investment">เพื่อการลงทุน</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">งบประมาณ</label>
+            <select id="budget">
+              <option value="">-- ระบุงบประมาณ --</option>
+              <option>3 – 5 ล้านบาท</option>
+              <option>5 – 8 ล้านบาท</option>
+              <option>8 – 12 ล้านบาท</option>
+              <option>12 ล้านบาทขึ้นไป</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">ข้อความเพิ่มเติม</label>
+            <textarea id="message" placeholder="ข้อสงสัยหรือข้อมูลเพิ่มเติมที่ต้องการทราบ..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span id="submitText">📩 ส่งข้อมูลและนัดชมโครงการ</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo">
+          <div class="logo-mark">C</div>
+          <div class="logo-text">THE <span>CONDO</span></div>
+        </a>
+        <p class="brand-desc">โครงการคอนโดหรูใจกลางกรุงเทพฯ ออกแบบเพื่อผู้ที่ต้องการมาตรฐานชีวิตระดับ Premium พร้อมทำเลทองและสิ่งอำนวยความสะดวกระดับ World Class</p>
+        <div class="footer-social">
+          <div class="social-btn">📘</div>
+          <div class="social-btn">📷</div>
+          <div class="social-btn">💬</div>
+          <div class="social-btn">▶️</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>โครงการ</h4>
+        <ul>
+          <li><a href="#overview">เกี่ยวกับโครงการ</a></li>
+          <li><a href="#features">สิ่งอำนวยความสะดวก</a></li>
+          <li><a href="#gallery">แกลเลอรี</a></li>
+          <li><a href="#units">ประเภทห้อง</a></li>
+          <li><a href="#location">ทำเลที่ตั้ง</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ข้อมูล</h4>
+        <ul>
+          <li><a href="#">ข่าวสาร & โปรโมชั่น</a></li>
+          <li><a href="#">Floor Plan</a></li>
+          <li><a href="#">Virtual Tour</a></li>
+          <li><a href="#">การเงินและสินเชื่อ</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ติดต่อ</h4>
+        <ul>
+          <li><a href="#">📞 02-XXX-XXXX</a></li>
+          <li><a href="#">💬 @thecondoresidence</a></li>
+          <li><a href="#">📧 info@thecondoresidence.com</a></li>
+          <li><a href="#">📍 Sales Gallery</a></li>
+          <li><a href="#">🕐 ทุกวัน 10:00–19:00</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 The Condo Residence. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">นโยบายความเป็นส่วนตัว</a>
+        <a href="#">เงื่อนไขการใช้งาน</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop">↑</button>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+  // Preloader
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('preloader').classList.add('hide'), 1400);
+  });
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('backToTop').classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+
+  // Back to top
+  document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+  // Counter animation
+  const animateCounter = (el, target, suffix) => {
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = Math.floor(current).toLocaleString() + suffix;
+    }, 25);
+  };
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        animateCounter(el, parseInt(el.dataset.target), el.dataset.suffix || '');
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+  // Gallery tabs
+  document.querySelectorAll('.gallery-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        const show = filter === 'all' || item.dataset.cat === filter;
+        item.style.opacity = show ? '1' : '0.2';
+        item.style.transform = show ? '' : 'scale(0.97)';
+        item.style.transition = 'opacity 0.4s, transform 0.4s';
+      });
+    });
+  });
+
+  // Form submit
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const btn  = document.getElementById('submitBtn');
+    const span = document.getElementById('submitText');
+    btn.disabled = true;
+    span.textContent = '⏳ กำลังส่งข้อมูล...';
+    setTimeout(() => {
+      span.textContent = '✅ ส่งสำเร็จ! ทีมงานจะติดต่อกลับเร็วๆ นี้';
+      btn.style.background = 'linear-gradient(135deg,#2e7d32,#43a047)';
+      document.getElementById('contactForm').reset();
+      setTimeout(() => {
+        btn.disabled = false;
+        span.textContent = '📩 ส่งข้อมูลและนัดชมโครงการ';
+        btn.style.background = '';
+      }, 5000);
+    }, 1800);
+  });
+</script>
+
+</body>
+</html>

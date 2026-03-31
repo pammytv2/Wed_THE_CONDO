@@ -1,0 +1,44 @@
+# WordPress core files (ไม่ต้อง commit core)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+!/wp-content/
+
+# Uploads
+/wp-content/uploads/
+
+# WordPress config (ความปลอดภัย)
+wp-config.php
+wp-config-sample.php
+
+# Plugins (ให้ติดตั้งใหม่ผ่าน composer/manual)
+/wp-content/plugins/
+
+# Cache & generated files
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/advanced-cache.php
+/wp-content/object-cache.php
+/wp-content/db.php
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.bak
+*.swp
+*.swo
+.idea/
+.vscode/settings.json
+node_modules/
+
+# Theme build artifacts
+/wp-content/themes/condo-landing/node_modules/
+/wp-content/themes/condo-landing/dist/
+/wp-content/themes/condo-landing/.cache/
+
+# Environment
+.env
+.env.local
+.env.production
